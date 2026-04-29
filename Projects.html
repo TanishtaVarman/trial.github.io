@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects — Tanishta Varman</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --white: #ffffff;
+      --snow: #f0f6fc;
+      --frost: #ddeef9;
+      --ice: #b8d8f0;
+      --blue-soft: #7aaac8;
+      --blue-mid: #3a8fc0;
+      --blue-deep: #1a3d5c;
+      --blue-dark: #0d2236;
+      --glass: rgba(255,255,255,0.72);
+      --glass-border: rgba(180,210,235,0.5);
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--snow);
+      color: var(--blue-deep);
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 20% 10%, rgba(180,220,245,0.35) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 80%, rgba(200,230,250,0.3) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    nav {
+      position: fixed;
+      top: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 100;
+      background: rgba(255,255,255,0.82);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--glass-border);
+      border-radius: 50px;
+      padding: 0.6rem 2rem;
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+      box-shadow: 0 4px 24px rgba(100,160,210,0.12);
+    }
+    .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--blue-deep); font-weight: 500; letter-spacing: 1px; text-decoration: none; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { font-size: 0.8rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--blue-soft); text-decoration: none; font-weight: 400; transition: color 0.3s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--blue-deep); }
+
+    .snowflake { position: fixed; color: rgba(180,210,235,0.5); pointer-events: none; animation: snowfall linear infinite; z-index: 0; user-select: none; }
+    @keyframes snowfall {
+      0% { transform: translateY(-20px) rotate(0deg); opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 0.4; }
+      100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+    }
+
+    .page-wrap {
+      position: relative;
+      z-index: 1;
+      padding: 7rem 6rem 4rem;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    .page-header { margin-bottom: 3rem; animation: fadeUp 0.8s ease both; }
+
+    .page-eyebrow { font-size: 0.72rem; letter-spacing: 3px; text-transform: uppercase; color: var(--blue-soft); margin-bottom: 0.8rem; }
+
+    .page-title { font-family: 'Cormorant Garamond', serif; font-size: 4rem; font-weight: 300; color: var(--blue-dark); line-height: 1.1; }
+
+    /* Filter pills */
+    .filter-bar {
+      display: flex;
+      gap: 0.8rem;
+      margin-bottom: 2.5rem;
+      flex-wrap: wrap;
+      animation: fadeUp 0.8s 0.1s ease both;
+    }
+    .filter-btn {
+      font-size: 0.75rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 0.4rem 1.2rem;
+      border-radius: 50px;
+      border: 1px solid var(--glass-border);
+      background: var(--glass);
+      color: var(--blue-soft);
+      cursor: pointer;
+      transition: all 0.3s;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--blue-mid);
+      border-color: var(--blue-mid);
+      color: white;
+    }
+
+    /* Projects grid */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.2rem;
+      animation: fadeUp 0.8s 0.15s ease both;
+    }
+
+    .project-card {
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      padding: 1.8rem;
+      transition: all 0.3s;
+      cursor: pointer;
+      text-decoration: none;
+      display: block;
+      position: relative;
+      overflow: hidden;
+    }
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: -40px; right: -40px;
+      width: 100px; height: 100px;
+      background: radial-gradient(circle, rgba(180,215,245,0.25) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .project-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 16px 40px rgba(100,160,210,0.18);
+      border-color: var(--ice);
+      background: rgba(255,255,255,0.88);
+    }
+
+    .project-year { font-size: 0.7rem; color: var(--blue-soft); letter-spacing: 2px; margin-bottom: 0.8rem; font-weight: 400; }
+
+    .project-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.45rem;
+      color: var(--blue-dark);
+      margin-bottom: 0.6rem;
+      font-weight: 500;
+      line-height: 1.2;
+    }
+
+    .project-status {
+      display: inline-block;
+      font-size: 0.65rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 3px 12px;
+      border-radius: 20px;
+      margin-bottom: 1rem;
+      font-weight: 500;
+    }
+    .status-done { background: rgba(58,143,192,0.1); color: var(--blue-mid); border: 1px solid rgba(58,143,192,0.25); }
+    .status-wip { background: rgba(80,180,120,0.1); color: #2e8a55; border: 1px solid rgba(80,180,120,0.3); }
+
+    .project-desc { font-size: 0.87rem; color: #6a9ab8; line-height: 1.75; font-weight: 300; margin-bottom: 1.2rem; }
+
+    .tech-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .tech-tag {
+      font-size: 0.7rem;
+      background: rgba(180,210,235,0.2);
+      color: var(--blue-soft);
+      border: 1px solid rgba(180,210,235,0.4);
+      border-radius: 20px;
+      padding: 3px 10px;
+    }
+
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      margin-top: 1rem;
+      font-size: 0.75rem;
+      color: var(--blue-mid);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    /* WIP card special style */
+    .project-card.wip {
+      border: 1px dashed rgba(80,180,120,0.35);
+      background: rgba(245,255,250,0.6);
+    }
+
+    footer {
+      position: relative;
+      z-index: 1;
+      background: rgba(255,255,255,0.6);
+      backdrop-filter: blur(12px);
+      border-top: 1px solid var(--glass-border);
+      padding: 2.5rem 6rem;
+      margin-top: 4rem;
+    }
+    .footer-inner { max-width: 1300px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+    .footer-name { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--blue-deep); }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a { color: var(--blue-soft); transition: color 0.3s; text-decoration: none; }
+    .footer-links a:hover { color: var(--blue-deep); }
+    .footer-copy { font-size: 0.78rem; color: var(--blue-soft); }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 900px) {
+      .page-wrap { padding: 6rem 2rem 3rem; }
+      .projects-grid { grid-template-columns: 1fr 1fr; }
+      footer { padding: 2rem; }
+    }
+    @media (max-width: 600px) {
+      .projects-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .page-title { font-size: 2.8rem; }
+    }
+  </style>
+</head>
+<body>
+  <div id="snowflakes"></div>
+
+  <nav>
+    <a href="index.html" class="nav-logo">T · V</a>
+    <ul class="nav-links">
+      <li><a href="about.html">About</a></li>
+      <li><a href="projects.html" class="active">Projects</a></li>
+      <li><a href="skills.html">Skills</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-wrap">
+    <div class="page-header">
+      <div class="page-eyebrow">What I've Built</div>
+      <h1 class="page-title">Projects</h1>
+    </div>
+
+    <div class="filter-bar">
+      <button class="filter-btn active" onclick="filterProjects('all', this)">All</button>
+      <button class="filter-btn" onclick="filterProjects('completed', this)">Completed</button>
+      <button class="filter-btn" onclick="filterProjects('wip', this)">In Progress</button>
+      <button class="filter-btn" onclick="filterProjects('ml', this)">ML / AI</button>
+      <button class="filter-btn" onclick="filterProjects('security', this)">Security</button>
+    </div>
+
+    <div class="projects-grid" id="projects-grid">
+
+      <!-- WIP dummy project -->
+      <div class="project-card wip" data-tags="wip">
+        <div class="project-year">2025</div>
+        <div class="project-name">Upcoming Project</div>
+        <span class="project-status status-wip">Currently Working</span>
+        <p class="project-desc">Something exciting is in the works. Edit this card with your current project details when ready.</p>
+        <div class="tech-tags"><span class="tech-tag">TBA</span></div>
+      </div>
+
+      <!-- Sage Bot -->
+      <a href="https://github.com/TanishtaVarman/Sage-Bot" target="_blank" class="project-card" data-tags="completed ml">
+        <div class="project-year">2024</div>
+        <div class="project-name">Sage Bot — AI Chatbot</div>
+        <span class="project-status status-done">Completed</span>
+        <p class="project-desc">NLP-powered chatbot with intelligent response generation using advanced machine learning and custom training pipelines.</p>
+        <div class="tech-tags">
+          <span class="tech-tag">Python</span>
+          <span class="tech-tag">TensorFlow</span>
+          <span class="tech-tag">NLP</span>
+          <span class="tech-tag">API Integration</span>
+        </div>
+        <div class="project-link">View on GitHub →</div>
+      </a>
+
+      <!-- Order Forensic -->
+      <a href="https://github.com/TanishtaVarman/Forensic-Workspace" target="_blank" class="project-card" data-tags="completed security">
+        <div class="project-year">2024</div>
+        <div class="project-name">Order — Forensic System</div>
+        <span class="project-status status-done">Completed</span>
+        <p class="project-desc">Comprehensive digital forensic system for analyzing and processing evidence data, with recovery, analysis, and reporting tools.</p>
+        <div class="tech-tags">
+          <span class="tech-tag">Python</span>
+          <span class="tech-tag">SQL</span>
+          <span class="tech-tag">Data Analysis</span>
+          <span class="tech-tag">Security</span>
+        </div>
+        <div class="project-link">View on GitHub →</div>
+      </a>
+
+      <!-- Port Scanner -->
+      <a href="https://github.com/TanishtaVarman/Port-Scanner" target="_blank" class="project-card" data-tags="completed security">
+        <div class="project-year">2024</div>
+        <div class="project-name">Advanced Port Scanner</div>
+        <span class="project-status status-done">Completed</span>
+        <p class="project-desc">Network security tool for scanning and analyzing open ports. Features multi-threaded scanning, service detection, and detailed reporting.</p>
+        <div class="tech-tags">
+          <span class="tech-tag">Python</span>
+          <span class="tech-tag">Network Security</span>
+          <span class="tech-tag">Multi-threading</span>
+          <span class="tech-tag">Wireshark</span>
+        </div>
+        <div class="project-link">View on GitHub →</div>
+      </a>
+
+      <!-- Felis Classifier -->
+      <a href="https://github.com/TanishtaVarman/Deep-Learning-Felis-Taxonomy-Classifier" target="_blank" class="project-card" data-tags="completed ml">
+        <div class="project-year">2023</div>
+        <div class="project-name">Felis Taxonomy Classifier</div>
+        <span class="project-status status-done">Completed</span>
+        <p class="project-desc">Deep learning model for classifying species within the Felidae family using CNN architecture for accurate species identification from images.</p>
+        <div class="tech-tags">
+          <span class="tech-tag">Python</span>
+          <span class="tech-tag">TensorFlow</span>
+          <span class="tech-tag">CNN</span>
+          <span class="tech-tag">Image Classification</span>
+        </div>
+        <div class="project-link">View on GitHub →</div>
+      </a>
+
+      <!-- Speech Recognition -->
+      <a href="https://github.com/TanishtaVarman/Speech-Recognition-using-CNN-" target="_blank" class="project-card" data-tags="completed ml">
+        <div class="project-year">2023</div>
+        <div class="project-name">Speech Recognition CNN</div>
+        <span class="project-status status-done">Completed</span>
+        <p class="project-desc">Convolutional neural network for high-accuracy speech recognition, transcribing audio to text using advanced deep learning architectures.</p>
+        <div class="tech-tags">
+          <span class="tech-tag">Python</span>
+          <span class="tech-tag">TensorFlow</span>
+          <span class="tech-tag">CNN</span>
+          <span class="tech-tag">Audio Processing</span>
+        </div>
+        <div class="project-link">View on GitHub →</div>
+      </a>
+
+      <!-- Electrical Grid -->
+      <a href="https://github.com/TanishtaVarman/Machine-Learning-" target="_blank" class="project-card" data-tags="completed ml">
+        <div class="project-year">2023</div>
+        <div class="project-name">Electrical Grid Stability</div>
+        <span class="project-status status-done">Completed</span>
+        <p class="project-desc">ML model predicting electrical grid stability using network parameters to prevent outages and optimize grid performance through predictive analysis.</p>
+        <div class="tech-tags">
+          <span class="tech-tag">Python</span>
+          <span class="tech-tag">Scikit-Learn</span>
+          <span class="tech-tag">Data Analysis</span>
+          <span class="tech-tag">Predictive Modeling</span>
+        </div>
+        <div class="project-link">View on GitHub →</div>
+      </a>
+
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-name">Tanishta Varman</div>
+      <div class="footer-links">
+        <a href="mailto:tanishta.varman@gmail.com"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
+        <a href="https://github.com/TanishtaVarman" target="_blank"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>
+        <a href="https://linkedin.com/in/tanishta-varman" target="_blank"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+      </div>
+      <div class="footer-copy">© 2026 Tanishta Varman</div>
+    </div>
+  </footer>
+
+  <script>
+    const container = document.getElementById('snowflakes');
+    const flakes = ['❄','❅','❆','✦','·'];
+    for(let i = 0; i < 18; i++) {
+      const s = document.createElement('span');
+      s.className = 'snowflake';
+      s.textContent = flakes[Math.floor(Math.random() * flakes.length)];
+      s.style.cssText = `left:${Math.random()*100}vw;font-size:${0.5+Math.random()*0.9}rem;animation-duration:${7+Math.random()*10}s;animation-delay:${-Math.random()*14}s;`;
+      container.appendChild(s);
+    }
+
+    function filterProjects(tag, btn) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.project-card').forEach(card => {
+        if(tag === 'all' || card.dataset.tags.includes(tag)) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+  </script>
+</body>
+</html>
