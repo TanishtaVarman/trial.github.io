@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — Tanishta Varman</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --snow: #f0f6fc; --ice: #b8d8f0; --blue-soft: #7aaac8;
+      --blue-mid: #3a8fc0; --blue-deep: #1a3d5c; --blue-dark: #0d2236;
+      --glass: rgba(255,255,255,0.72); --glass-border: rgba(180,210,235,0.5);
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--snow); color: var(--blue-deep); min-height: 100vh; }
+    body::before { content:''; position:fixed; inset:0; background: radial-gradient(ellipse at 20% 10%, rgba(180,220,245,0.35) 0%, transparent 50%), radial-gradient(ellipse at 80% 80%, rgba(200,230,250,0.3) 0%, transparent 50%); pointer-events:none; z-index:0; }
+
+    nav { position:fixed; top:1.5rem; left:50%; transform:translateX(-50%); z-index:100; background:rgba(255,255,255,0.82); backdrop-filter:blur(16px); border:1px solid var(--glass-border); border-radius:50px; padding:0.6rem 2rem; display:flex; align-items:center; gap:2.5rem; box-shadow:0 4px 24px rgba(100,160,210,0.12); }
+    .nav-logo { font-family:'Cormorant Garamond',serif; font-size:1.1rem; color:var(--blue-deep); font-weight:500; letter-spacing:1px; text-decoration:none; }
+    .nav-links { display:flex; gap:2rem; list-style:none; }
+    .nav-links a { font-size:0.8rem; letter-spacing:1.5px; text-transform:uppercase; color:var(--blue-soft); text-decoration:none; transition:color 0.3s; }
+    .nav-links a:hover, .nav-links a.active { color:var(--blue-deep); }
+
+    .snowflake { position:fixed; color:rgba(180,210,235,0.5); pointer-events:none; animation:snowfall linear infinite; z-index:0; user-select:none; }
+    @keyframes snowfall { 0%{transform:translateY(-20px) rotate(0deg);opacity:0} 10%{opacity:1} 90%{opacity:0.4} 100%{transform:translateY(100vh) rotate(360deg);opacity:0} }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+
+    .page-wrap { position:relative; z-index:1; padding:7rem 6rem 4rem; max-width:1100px; margin:0 auto; }
+
+    .about-hero { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center; margin-bottom:5rem; animation:fadeUp 0.8s ease both; }
+
+    .about-eyebrow { font-size:0.72rem; letter-spacing:3px; text-transform:uppercase; color:var(--blue-soft); margin-bottom:0.8rem; }
+    .about-h1 { font-family:'Cormorant Garamond',serif; font-size:4rem; font-weight:300; color:var(--blue-dark); line-height:1.08; margin-bottom:1.5rem; }
+    .about-h1 em { color:var(--blue-mid); font-style:italic; }
+    .about-lead { font-size:1rem; color:#5a8aaa; line-height:1.9; font-weight:300; }
+
+    .about-img-box {
+      background:linear-gradient(145deg, rgba(180,215,240,0.3) 0%, rgba(220,240,255,0.5) 100%);
+      border:1px solid var(--glass-border); border-radius:20px;
+      aspect-ratio:3/4; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:1rem;
+    }
+    .about-img-label { font-family:'Cormorant Garamond',serif; font-size:0.85rem; color:var(--blue-soft); font-style:italic; letter-spacing:1px; }
+
+    .content-sections { display:flex; flex-direction:column; gap:3rem; }
+
+    .content-card { background:var(--glass); border:1px solid var(--glass-border); border-radius:16px; padding:2.5rem; animation:fadeUp 0.8s ease both; }
+    .content-card + .content-card { animation-delay:0.1s; }
+
+    .content-card h2 { font-family:'Cormorant Garamond',serif; font-size:2rem; color:var(--blue-dark); font-weight:400; margin-bottom:1.2rem; }
+    .content-card p { font-size:0.95rem; color:#5a8aaa; line-height:1.9; font-weight:300; margin-bottom:1rem; }
+    .content-card p:last-child { margin-bottom:0; }
+    .content-card strong { color:var(--blue-mid); font-weight:500; }
+
+    .highlight { background:rgba(58,143,192,0.06); border-left:3px solid var(--blue-mid); border-radius:0 10px 10px 0; padding:1.2rem 1.5rem; margin:1.5rem 0; }
+    .highlight p { color:var(--blue-deep) !important; }
+
+    .badges { display:flex; flex-wrap:wrap; gap:0.6rem; margin-top:1rem; }
+    .badge { display:inline-flex; align-items:center; gap:0.4rem; background:rgba(58,143,192,0.08); border:1px solid rgba(58,143,192,0.2); color:var(--blue-mid); border-radius:50px; padding:0.4rem 1rem; font-size:0.78rem; }
+
+    footer { position:relative; z-index:1; background:rgba(255,255,255,0.6); backdrop-filter:blur(12px); border-top:1px solid var(--glass-border); padding:2.5rem 6rem; margin-top:4rem; }
+    .footer-inner { max-width:1300px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; }
+    .footer-name { font-family:'Cormorant Garamond',serif; font-size:1.1rem; color:var(--blue-deep); }
+    .footer-links { display:flex; gap:1.5rem; }
+    .footer-links a { color:var(--blue-soft); transition:color 0.3s; text-decoration:none; }
+    .footer-links a:hover { color:var(--blue-deep); }
+    .footer-copy { font-size:0.78rem; color:var(--blue-soft); }
+
+    @media(max-width:900px){ .page-wrap{padding:6rem 2rem 3rem;} .about-hero{grid-template-columns:1fr;gap:2rem;} footer{padding:2rem;} }
+    @media(max-width:600px){ .nav-links{display:none;} .about-h1{font-size:2.8rem;} }
+  </style>
+</head>
+<body>
+  <div id="snowflakes"></div>
+  <nav>
+    <a href="index.html" class="nav-logo">T · V</a>
+    <ul class="nav-links">
+      <li><a href="about.html" class="active">About</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="skills.html">Skills</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-wrap">
+    <div class="about-hero">
+      <div>
+        <div class="about-eyebrow">The Person Behind the Code</div>
+        <h1 class="about-h1">Hello,<br>I'm <em>Tani</em></h1>
+        <p class="about-lead">Computer Science student at Sai University with a passion for building things at the intersection of AI, security, and thoughtful design.</p>
+      </div>
+      <div class="about-img-box">
+        <svg width="120" height="200" viewBox="0 0 140 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="70" cy="55" rx="32" ry="36" fill="rgba(180,215,245,0.5)" stroke="rgba(120,180,220,0.6)" stroke-width="1"/>
+          <path d="M40 42 Q45 20 70 22 Q95 20 100 42" stroke="rgba(90,150,200,0.7)" stroke-width="2" fill="rgba(140,190,230,0.3)"/>
+          <path d="M38 90 Q30 130 28 200 L112 200 Q110 130 102 90 Q85 82 70 82 Q55 82 38 90Z" fill="rgba(180,215,245,0.4)" stroke="rgba(120,180,220,0.5)" stroke-width="1"/>
+          <path d="M70 82 L58 120 L70 115 L82 120 L70 82Z" fill="rgba(140,195,235,0.5)" stroke="rgba(100,170,220,0.4)" stroke-width="1"/>
+          <rect x="62" y="86" width="16" height="12" rx="4" fill="rgba(200,225,245,0.6)"/>
+          <ellipse cx="60" cy="52" rx="4" ry="3.5" fill="rgba(30,80,130,0.7)"/>
+          <ellipse cx="80" cy="52" rx="4" ry="3.5" fill="rgba(30,80,130,0.7)"/>
+          <circle cx="62" cy="50" r="1.5" fill="white" opacity="0.8"/>
+          <circle cx="82" cy="50" r="1.5" fill="white" opacity="0.8"/>
+          <text x="105" y="30" font-size="14" fill="rgba(120,180,220,0.7)">✦</text>
+        </svg>
+        <div class="about-img-label">Caleb · Love & Deepspace</div>
+      </div>
+    </div>
+
+    <div class="content-sections">
+      <div class="content-card">
+        <h2>Who I Am</h2>
+        <p>I'm a CS student passionate about leveraging technology to solve real-world problems. My journey in tech is driven by curiosity — whether that's training a neural network to classify cat species or building forensic tools for digital analysis.</p>
+        <p>I've worked on <strong>AI chatbots</strong>, <strong>forensic systems</strong>, and <strong>network security tools</strong>. Currently diving deeper into machine learning and deep learning architectures.</p>
+        <div class="highlight">
+          <p><strong>Currently:</strong> Exploring ML and deep learning. Proud Millennium Fellow with UN Academic Impact 2024.</p>
+        </div>
+      </div>
+
+      <div class="content-card">
+        <h2>What I Build</h2>
+        <p>AI-powered applications using TensorFlow and Scikit-Learn — from NLP chatbots to image classification models. Full-stack web apps with React.js and Express.js focused on intuitive user experiences. Network security tools for port scanning, forensic analysis, and cybersecurity fundamentals.</p>
+        <div class="badges">
+          <span class="badge">✦ Machine Learning</span>
+          <span class="badge">✦ Deep Learning</span>
+          <span class="badge">✦ Network Security</span>
+          <span class="badge">✦ Full Stack</span>
+        </div>
+      </div>
+
+      <div class="content-card">
+        <h2>Beyond Code</h2>
+        <p>When I'm not coding, I contribute to community initiatives and creative design projects. I served as <strong>Design Assistant for Zeitgeist Magazine</strong> in 2024 and participated in <strong>IIT Bombay's E-Yantra Robotics Competition</strong> in 2023.</p>
+        <p>I believe in continuous learning, making technology accessible, and pushing the boundaries of what's possible.</p>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-name">Tanishta Varman</div>
+      <div class="footer-links">
+        <a href="mailto:tanishta.varman@gmail.com"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
+        <a href="https://github.com/TanishtaVarman" target="_blank"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>
+        <a href="https://linkedin.com/in/tanishta-varman" target="_blank"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+      </div>
+      <div class="footer-copy">© 2026 Tanishta Varman</div>
+    </div>
+  </footer>
+
+  <script>
+    const c = document.getElementById('snowflakes');
+    ['❄','❅','✦','·','❆'].forEach((f,i) => {
+      for(let j=0;j<4;j++){
+        const s=document.createElement('span');
+        s.className='snowflake';s.textContent=f;
+        s.style.cssText=`left:${Math.random()*100}vw;font-size:${0.4+Math.random()*0.8}rem;animation-duration:${7+Math.random()*10}s;animation-delay:${-Math.random()*14}s;`;
+        c.appendChild(s);
+      }
+    });
+  </script>
+</body>
+</html>
