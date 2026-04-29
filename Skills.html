@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skills — Tanishta Varman</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --snow:#f0f6fc; --ice:#b8d8f0; --blue-soft:#7aaac8;
+      --blue-mid:#3a8fc0; --blue-deep:#1a3d5c; --blue-dark:#0d2236;
+      --glass:rgba(255,255,255,0.72); --glass-border:rgba(180,210,235,0.5);
+    }
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{font-family:'DM Sans',sans-serif;background:var(--snow);color:var(--blue-deep);min-height:100vh;}
+    body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse at 20% 10%,rgba(180,220,245,0.35) 0%,transparent 50%),radial-gradient(ellipse at 80% 80%,rgba(200,230,250,0.3) 0%,transparent 50%);pointer-events:none;z-index:0;}
+
+    nav{position:fixed;top:1.5rem;left:50%;transform:translateX(-50%);z-index:100;background:rgba(255,255,255,0.82);backdrop-filter:blur(16px);border:1px solid var(--glass-border);border-radius:50px;padding:0.6rem 2rem;display:flex;align-items:center;gap:2.5rem;box-shadow:0 4px 24px rgba(100,160,210,0.12);}
+    .nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--blue-deep);font-weight:500;letter-spacing:1px;text-decoration:none;}
+    .nav-links{display:flex;gap:2rem;list-style:none;}
+    .nav-links a{font-size:0.8rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--blue-soft);text-decoration:none;transition:color 0.3s;}
+    .nav-links a:hover,.nav-links a.active{color:var(--blue-deep);}
+
+    .snowflake{position:fixed;color:rgba(180,210,235,0.5);pointer-events:none;animation:snowfall linear infinite;z-index:0;user-select:none;}
+    @keyframes snowfall{0%{transform:translateY(-20px) rotate(0deg);opacity:0}10%{opacity:1}90%{opacity:0.4}100%{transform:translateY(100vh) rotate(360deg);opacity:0}}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+
+    .page-wrap{position:relative;z-index:1;padding:7rem 6rem 4rem;max-width:1200px;margin:0 auto;}
+
+    .page-eyebrow{font-size:0.72rem;letter-spacing:3px;text-transform:uppercase;color:var(--blue-soft);margin-bottom:0.8rem;}
+    .page-title{font-family:'Cormorant Garamond',serif;font-size:4rem;font-weight:300;color:var(--blue-dark);line-height:1.1;margin-bottom:3rem;animation:fadeUp 0.8s ease both;}
+
+    .section-title{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:400;color:var(--blue-dark);margin-bottom:1.5rem;margin-top:3rem;}
+
+    .skills-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:1rem;animation:fadeUp 0.8s 0.1s ease both;}
+
+    .skill-box{background:var(--glass);border:1px solid var(--glass-border);border-radius:14px;padding:1.5rem;transition:all 0.3s;position:relative;overflow:hidden;}
+    .skill-box::after{content:'';position:absolute;bottom:-20px;right:-20px;width:60px;height:60px;background:radial-gradient(circle,rgba(180,215,245,0.2) 0%,transparent 70%);border-radius:50%;}
+    .skill-box:hover{transform:translateY(-5px);box-shadow:0 10px 28px rgba(100,160,210,0.14);border-color:var(--ice);}
+    .skill-box h4{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--blue-dark);margin-bottom:0.8rem;font-weight:500;}
+    .skill-box p{font-size:0.85rem;color:#6a9ab8;line-height:1.7;font-weight:300;}
+
+    .cert-list{display:flex;flex-direction:column;gap:0.8rem;animation:fadeUp 0.8s 0.15s ease both;}
+    .cert-item{background:var(--glass);border:1px solid var(--glass-border);border-radius:12px;padding:1.2rem 1.5rem;display:flex;justify-content:space-between;align-items:center;transition:all 0.3s;}
+    .cert-item:hover{transform:translateX(8px);border-color:var(--ice);box-shadow:0 4px 16px rgba(100,160,210,0.1);}
+    .cert-title{font-size:0.95rem;color:var(--blue-dark);font-weight:500;}
+    .cert-issuer{font-size:0.8rem;color:var(--blue-soft);font-style:italic;font-weight:300;margin-top:0.2rem;}
+    .cert-year{font-size:0.7rem;color:var(--blue-soft);letter-spacing:2px;}
+
+    footer{position:relative;z-index:1;background:rgba(255,255,255,0.6);backdrop-filter:blur(12px);border-top:1px solid var(--glass-border);padding:2.5rem 6rem;margin-top:4rem;}
+    .footer-inner{max-width:1300px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;}
+    .footer-name{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--blue-deep);}
+    .footer-links{display:flex;gap:1.5rem;}
+    .footer-links a{color:var(--blue-soft);transition:color 0.3s;text-decoration:none;}
+    .footer-links a:hover{color:var(--blue-deep);}
+    .footer-copy{font-size:0.78rem;color:var(--blue-soft);}
+
+    @media(max-width:900px){.page-wrap{padding:6rem 2rem 3rem;}.skills-grid{grid-template-columns:1fr 1fr;}footer{padding:2rem;}}
+    @media(max-width:600px){.nav-links{display:none;}.skills-grid{grid-template-columns:1fr;}.page-title{font-size:2.8rem;}.cert-item{flex-direction:column;align-items:flex-start;gap:0.3rem;}}
+  </style>
+</head>
+<body>
+  <div id="snowflakes"></div>
+  <nav>
+    <a href="index.html" class="nav-logo">T · V</a>
+    <ul class="nav-links">
+      <li><a href="about.html">About</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="skills.html" class="active">Skills</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-wrap">
+    <div class="page-eyebrow">What I Know</div>
+    <h1 class="page-title">Skills & Certifications</h1>
+
+    <h2 class="section-title">Technical Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-box">
+        <h4>Languages</h4>
+        <p>Python, C, C++, JavaScript, SQL, HTML, CSS, Node.js</p>
+      </div>
+      <div class="skill-box">
+        <h4>Frameworks</h4>
+        <p>React.js, Express.js, TensorFlow, Firebase, Scikit-Learn</p>
+      </div>
+      <div class="skill-box">
+        <h4>Tools</h4>
+        <p>Git/GitHub, Vite, Google Colab, Wireshark</p>
+      </div>
+      <div class="skill-box">
+        <h4>Specializations</h4>
+        <p>Machine Learning, Deep Learning, Network Security, API Integration</p>
+      </div>
+    </div>
+
+    <h2 class="section-title">Certifications & Achievements</h2>
+    <div class="cert-list">
+      <div class="cert-item">
+        <div>
+          <div class="cert-title">Machine Learning Specialization</div>
+          <div class="cert-issuer">Stanford University / DeepLearning.AI</div>
+        </div>
+        <div class="cert-year">2024</div>
+      </div>
+      <div class="cert-item">
+        <div>
+          <div class="cert-title">Generative AI Fundamentals</div>
+          <div class="cert-issuer">LinkedIn Learning</div>
+        </div>
+        <div class="cert-year">2024</div>
+      </div>
+      <div class="cert-item">
+        <div>
+          <div class="cert-title">Cybersecurity Fundamentals</div>
+          <div class="cert-issuer">Acmegrade</div>
+        </div>
+        <div class="cert-year">2024</div>
+      </div>
+      <div class="cert-item">
+        <div>
+          <div class="cert-title">Millennium Fellow</div>
+          <div class="cert-issuer">UN Academic Impact</div>
+        </div>
+        <div class="cert-year">2024</div>
+      </div>
+      <div class="cert-item">
+        <div>
+          <div class="cert-title">Design Assistant</div>
+          <div class="cert-issuer">Zeitgeist Magazine</div>
+        </div>
+        <div class="cert-year">2024</div>
+      </div>
+      <div class="cert-item">
+        <div>
+          <div class="cert-title">E-Yantra Robotics Competition</div>
+          <div class="cert-issuer">IIT Bombay</div>
+        </div>
+        <div class="cert-year">2023</div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-name">Tanishta Varman</div>
+      <div class="footer-links">
+        <a href="mailto:tanishta.varman@gmail.com"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
+        <a href="https://github.com/TanishtaVarman" target="_blank"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>
+        <a href="https://linkedin.com/in/tanishta-varman" target="_blank"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+      </div>
+      <div class="footer-copy">© 2026 Tanishta Varman</div>
+    </div>
+  </footer>
+
+  <script>
+    const c=document.getElementById('snowflakes');
+    ['❄','❅','✦','·','❆'].forEach(f=>{
+      for(let j=0;j<4;j++){const s=document.createElement('span');s.className='snowflake';s.textContent=f;s.style.cssText=`left:${Math.random()*100}vw;font-size:${0.4+Math.random()*0.8}rem;animation-duration:${7+Math.random()*10}s;animation-delay:${-Math.random()*14}s;`;c.appendChild(s);}
+    });
+  </script>
+</body>
+</html>
